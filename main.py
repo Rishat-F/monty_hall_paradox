@@ -1,6 +1,6 @@
 """Doors displaying."""
 
-from typing import List
+from typing import List, Tuple
 
 door_hand = "०"
 prize = "💰"
@@ -19,43 +19,26 @@ doors_pattern = """\
 """
 
 
+def _get_door_params(opened: List[int], answer: int, door_number: int) -> Tuple[str]:
+    if door_number in opened:
+        r1 = r2 =  "     "
+        if answer == door_number:
+            r3 = "   " + prize
+            r4 = " " + prize * 2
+        else:
+            r3 = r4 = "     "
+    else:
+        r1 = "  " + str(door_number) + "  "
+        r2 = "    " + door_hand
+        r3 = "     "
+        r4 = "_" * 5
+    return r1, r2, r3, r4
+
+
 def draw_doors(opened: List[int], answer: int) -> None:
-    if first_door in opened:
-        r11 = r12 =  "     "
-        if answer == first_door:
-            r13 = "   " + prize
-            r14 = " " + prize * 2
-        else:
-            r13 = r14 = "     "
-    else:
-        r11 = "  " + str(first_door) + "  "
-        r12 = "    " + door_hand
-        r13 = "     "
-        r14 = "_" * 5
-    if second_door in opened:
-        r21 = r22 = "     "
-        if answer == second_door:
-            r23 = "   " +  prize
-            r24 = " " + prize * 2
-        else:
-            r23 = r24 = "     "
-    else:
-        r21 = "  " + str(second_door) + "  "
-        r22 = "    " + door_hand
-        r23 = "     "
-        r24 = "_" * 5
-    if third_door in opened:
-        r31 = r32 = "     "
-        if answer == third_door:
-            r33 = "   " + prize
-            r34 = " " + prize * 2
-        else:
-            r33 = r34 = "     "
-    else:
-        r31 = "  " + str(third_door) + "  "
-        r32 = "    " + door_hand
-        r33 = "     "
-        r34 = "_" * 5
+    r11, r12, r13, r14 = _get_door_params(opened, answer, first_door)
+    r21, r22, r23, r24 = _get_door_params(opened, answer, second_door)
+    r31, r32, r33, r34 = _get_door_params(opened, answer, third_door)
     print(
         doors_pattern.format(
             r11=r11,
