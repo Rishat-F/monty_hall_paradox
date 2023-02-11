@@ -1,6 +1,6 @@
 import pytest
 
-from main import draw_doors
+from main import Scene
 
 
 @pytest.mark.parametrize(
@@ -250,7 +250,8 @@ from main import draw_doors
 
 )
 def test_draw_doors(capsys, opened_doors, answer, expected_doors):
-    draw_doors(opened_doors, answer)
+    scene = Scene()
+    scene.draw_doors(opened_doors, answer)
     stdout, stderr = capsys.readouterr()
     assert stdout == expected_doors
     assert stderr == ""
