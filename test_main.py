@@ -4,11 +4,12 @@ from main import Scene
 
 
 @pytest.mark.parametrize(
-    "opened_doors,answer,expected_doors",
+    "opened_doors,answer,prediction,expected_doors",
     [
         (
             [],
             1,
+            None,
             """   _____    _____    _____\n"""
             """  |     |  |     |  |     |\n"""
             """  |  1  |  |  2  |  |  3  |\n"""
@@ -19,8 +20,9 @@ from main import Scene
         (
             [],
             2,
+            1,
             """   _____    _____    _____\n"""
-            """  |     |  |     |  |     |\n"""
+            """  |  ▼  |  |     |  |     |\n"""
             """  |  1  |  |  2  |  |  3  |\n"""
             """  |    ०|  |    ०|  |    ०|\n"""
             """  |     |  |     |  |     |\n"""
@@ -29,6 +31,7 @@ from main import Scene
         (
             [],
             3,
+            None,
             """   _____    _____    _____\n"""
             """  |     |  |     |  |     |\n"""
             """  |  1  |  |  2  |  |  3  |\n"""
@@ -39,8 +42,9 @@ from main import Scene
         (
             [1],
             1,
+            3,
             """   _____    _____    _____\n"""
-            """  |     |  |     |  |     |\n"""
+            """  |     |  |     |  |  ▼  |\n"""
             """  |     |  |  2  |  |  3  |\n"""
             """  |     |  |    ०|  |    ०|\n"""
             """  |   💰|  |     |  |     |\n"""
@@ -49,6 +53,7 @@ from main import Scene
         (
             [1],
             2,
+            None,
             """   _____    _____    _____\n"""
             """  |     |  |     |  |     |\n"""
             """  |     |  |  2  |  |  3  |\n"""
@@ -59,6 +64,7 @@ from main import Scene
         (
             [1],
             3,
+            1,
             """   _____    _____    _____\n"""
             """  |     |  |     |  |     |\n"""
             """  |     |  |  2  |  |  3  |\n"""
@@ -69,6 +75,7 @@ from main import Scene
         (
             [2],
             1,
+            None,
             """   _____    _____    _____\n"""
             """  |     |  |     |  |     |\n"""
             """  |  1  |  |     |  |  3  |\n"""
@@ -78,6 +85,7 @@ from main import Scene
         ),
         (
             [2],
+            2,
             2,
             """   _____    _____    _____\n"""
             """  |     |  |     |  |     |\n"""
@@ -89,6 +97,7 @@ from main import Scene
         (
             [2],
             3,
+            None,
             """   _____    _____    _____\n"""
             """  |     |  |     |  |     |\n"""
             """  |  1  |  |     |  |  3  |\n"""
@@ -99,6 +108,7 @@ from main import Scene
         (
             [3],
             1,
+            3,
             """   _____    _____    _____\n"""
             """  |     |  |     |  |     |\n"""
             """  |  1  |  |  2  |  |     |\n"""
@@ -109,6 +119,7 @@ from main import Scene
         (
             [3],
             2,
+            None,
             """   _____    _____    _____\n"""
             """  |     |  |     |  |     |\n"""
             """  |  1  |  |  2  |  |     |\n"""
@@ -119,8 +130,9 @@ from main import Scene
         (
             [3],
             3,
+            2,
             """   _____    _____    _____\n"""
-            """  |     |  |     |  |     |\n"""
+            """  |     |  |  ▼  |  |     |\n"""
             """  |  1  |  |  2  |  |     |\n"""
             """  |    ०|  |    ०|  |     |\n"""
             """  |     |  |     |  |   💰|\n"""
@@ -129,6 +141,7 @@ from main import Scene
         (
             [1, 2],
             1,
+            None,
             """   _____    _____    _____\n"""
             """  |     |  |     |  |     |\n"""
             """  |     |  |     |  |  3  |\n"""
@@ -139,8 +152,9 @@ from main import Scene
         (
             [1, 2],
             2,
+            3,
             """   _____    _____    _____\n"""
-            """  |     |  |     |  |     |\n"""
+            """  |     |  |     |  |  ▼  |\n"""
             """  |     |  |     |  |  3  |\n"""
             """  |     |  |     |  |    ०|\n"""
             """  |     |  |   💰|  |     |\n"""
@@ -149,6 +163,7 @@ from main import Scene
         (
             [1, 2],
             3,
+            None,
             """   _____    _____    _____\n"""
             """  |     |  |     |  |     |\n"""
             """  |     |  |     |  |  3  |\n"""
@@ -158,6 +173,7 @@ from main import Scene
         ),
         (
             [1, 3],
+            1,
             1,
             """   _____    _____    _____\n"""
             """  |     |  |     |  |     |\n"""
@@ -169,6 +185,7 @@ from main import Scene
         (
             [1, 3],
             2,
+            None,
             """   _____    _____    _____\n"""
             """  |     |  |     |  |     |\n"""
             """  |     |  |  2  |  |     |\n"""
@@ -179,6 +196,7 @@ from main import Scene
         (
             [1, 3],
             3,
+            1,
             """   _____    _____    _____\n"""
             """  |     |  |     |  |     |\n"""
             """  |     |  |  2  |  |     |\n"""
@@ -189,6 +207,7 @@ from main import Scene
         (
             [2, 3],
             1,
+            None,
             """   _____    _____    _____\n"""
             """  |     |  |     |  |     |\n"""
             """  |  1  |  |     |  |     |\n"""
@@ -199,8 +218,9 @@ from main import Scene
         (
             [2, 3],
             2,
+            1,
             """   _____    _____    _____\n"""
-            """  |     |  |     |  |     |\n"""
+            """  |  ▼  |  |     |  |     |\n"""
             """  |  1  |  |     |  |     |\n"""
             """  |    ०|  |     |  |     |\n"""
             """  |     |  |   💰|  |     |\n"""
@@ -209,6 +229,7 @@ from main import Scene
         (
             [2, 3],
             3,
+            None,
             """   _____    _____    _____\n"""
             """  |     |  |     |  |     |\n"""
             """  |  1  |  |     |  |     |\n"""
@@ -219,6 +240,7 @@ from main import Scene
         (
             [1, 2, 3],
             1,
+            3,
             """   _____    _____    _____\n"""
             """  |     |  |     |  |     |\n"""
             """  |     |  |     |  |     |\n"""
@@ -229,6 +251,7 @@ from main import Scene
         (
             [1, 2, 3],
             2,
+            None,
             """   _____    _____    _____\n"""
             """  |     |  |     |  |     |\n"""
             """  |     |  |     |  |     |\n"""
@@ -239,6 +262,7 @@ from main import Scene
         (
             [1, 2, 3],
             3,
+            2,
             """   _____    _____    _____\n"""
             """  |     |  |     |  |     |\n"""
             """  |     |  |     |  |     |\n"""
@@ -249,9 +273,11 @@ from main import Scene
     ]
 
 )
-def test_draw_doors(capsys, opened_doors, answer, expected_doors):
+def test__draw_doors(capsys, opened_doors, answer, prediction, expected_doors):
     scene = Scene()
-    scene.draw_doors(opened_doors, answer)
+    scene.opened_doors = opened_doors
+    scene.answer = answer
+    scene._draw_doors(prediction)
     stdout, stderr = capsys.readouterr()
     assert stdout == expected_doors
     assert stderr == ""
